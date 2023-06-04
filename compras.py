@@ -141,10 +141,11 @@ if path and tc:
   world = geopandas.read_file(geopandas.datasets.get_path('naturalearth_lowres'))
 
   fig, ax = plt.subplots(figsize=(20,10))
+  ax.tick_params(labelsize='10')
   world[world.name == 'Argentina'].plot(ax=ax,
       color='white', edgecolor='blue',label=True)
 
-  texts = [ax.text(row["Longitude"],row["Latitude"]+1,s=row["provincia"].capitalize()+"\n"+str(round(row["neto_pesos"],2)), horizontalalignment='center') for index, row in resumen_provincia.iterrows()]
+  texts = [ax.text(row["Longitude"]+0.5,row["Latitude"]-0.5,s=row["provincia"].capitalize()+"\n"+str(round(row["neto_pesos"],2)), horizontalalignment='left',fontsize = 8) for index, row in resumen_provincia.iterrows()]
 
   mapa = gdf.plot(ax=ax, color="red",label=df.provincia)
 
